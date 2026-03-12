@@ -5,7 +5,7 @@ import { RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api/nse`;
 
 export const Positions = () => {
   const [positions, setPositions] = useState([]);
@@ -64,7 +64,7 @@ export const Positions = () => {
         <Card className="bg-[#0A0A0B] border-[#1F1F23] p-4 rounded-sm">
           <p className="text-xs text-[#52525B] uppercase tracking-wider mb-2">Total Position Value</p>
           <p className="text-2xl font-mono font-medium text-[#E4E4E7]">
-            ${totalValue.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+            ₹{totalValue.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
           </p>
         </Card>
 
@@ -73,7 +73,7 @@ export const Positions = () => {
           <p className={`text-2xl font-mono font-medium ${
             totalPnl >= 0 ? 'text-[#00E396]' : 'text-[#FF0055]'
           }`}>
-            {totalPnl >= 0 ? '+' : ''}${totalPnl.toFixed(2)}
+            {totalPnl >= 0 ? '+' : ''}₹{totalPnl.toFixed(2)}
           </p>
         </Card>
 

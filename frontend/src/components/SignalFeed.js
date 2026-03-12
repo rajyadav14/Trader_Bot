@@ -4,9 +4,9 @@ import { Card } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api/nse`; // NSE endpoints
 
-const WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA'];
+const WATCHLIST = ['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ICICIBANK']; // NSE stocks
 
 export const SignalFeed = () => {
   const [signals, setSignals] = useState([]);
@@ -101,7 +101,7 @@ export const SignalFeed = () => {
               
               {signal.current_price && (
                 <div className="mt-1 text-xs text-[#52525B]">
-                  Price: <span className="text-[#E4E4E7] font-mono">${signal.current_price.toFixed(2)}</span>
+                  Price: <span className="text-[#E4E4E7] font-mono">₹{signal.current_price.toFixed(2)}</span>
                 </div>
               )}
             </div>

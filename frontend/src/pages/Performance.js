@@ -5,7 +5,7 @@ import { TrendingUp, Target, Award, Activity } from 'lucide-react';
 import { EquityCurveChart } from '@/components/charts/EquityCurveChart';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api/nse`;
 
 export const Performance = () => {
   const [performance, setPerformance] = useState(null);
@@ -55,7 +55,7 @@ export const Performance = () => {
               <p className={`text-2xl font-mono font-medium ${
                 totalPnl >= 0 ? 'text-[#00E396]' : 'text-[#FF0055]'
               }`}>
-                {totalPnl >= 0 ? '+' : ''}${totalPnl.toFixed(2)}
+                {totalPnl >= 0 ? '+' : ''}₹{totalPnl.toFixed(2)}
               </p>
               <p className={`text-sm font-mono ${
                 totalPnl >= 0 ? 'text-[#00E396]' : 'text-[#FF0055]'

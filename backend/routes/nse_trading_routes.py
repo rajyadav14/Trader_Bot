@@ -4,6 +4,7 @@ from services.technical_analysis_service import TechnicalAnalysisService
 from services.sentiment_analysis_service import SentimentAnalysisService
 from services.signal_fusion_service import SignalFusionService
 from services.angel_one_service import AngelOneService
+from services.autonomous_trader import autonomous_trader
 from models.ml_models import ensemble_model
 import logging
 from datetime import datetime, timezone
@@ -271,3 +272,39 @@ async def get_nse_performance():
     except Exception as e:
         logger.error(f"Error calculating performance: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/autonomous/status")
+async def get_autonomous_status():
+    """Get autonomous trading engine status"""
+    return autonomous_trader.get_status()
+
+
+@router.post("/autonomous/start")
+async def start_autonomous_trading():
+    """Start autonomous trading engine"""
+    if autonomous_trader.start():
+        return {"status": "started", "message": "Autonomous trading engine started"}
+    else:
+        return {"status": "disabled", "message": "AUTO_TRADING_ENABLED must be 'true' in .env"}
+
+
+@router.post("/autonomous/stop")
+async def stop_autonomous_trading():
+    """Stop autonomous trading engine"""
+    autonomous_trader.stop()
+    return {"status": "stopped", "message": "Autonomous trading engine stopped"}
+
+
+@router.post("/autonomous/pause")
+async def pause_autonomous_trading():
+    """Pause autonomous trading temporarily"""
+    autonomous_trader.pause("User requested pause")
+    return {"status": "paused", "message": "Autonomous trading paused"}
+
+
+@router.post("/autonomous/resume")
+async def resume_autonomous_trading():
+    """Resume autonomous trading"""
+    autonomous_trader.resume()
+    return {"status": "resumed", "message": "Autonomous trading resumed"}

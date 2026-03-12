@@ -9,7 +9,7 @@ import { PositionsTable } from '@/components/PositionsTable';
 import { RiskMetrics } from '@/components/RiskMetrics';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api/nse`; // Changed to NSE endpoints
 
 export const Dashboard = () => {
   const [account, setAccount] = useState(null);
@@ -64,7 +64,7 @@ export const Dashboard = () => {
             <div>
               <p className="text-xs text-[#52525B] uppercase tracking-wider mb-1">Equity</p>
               <p className="text-2xl font-mono font-medium text-[#E4E4E7]">
-                ${performance?.equity?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || '0.00'}
+                ₹{performance?.equity?.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) || '0.00'}
               </p>
             </div>
             <div className="w-10 h-10 rounded-sm bg-[#00F0FF]/10 flex items-center justify-center">
@@ -133,7 +133,7 @@ export const Dashboard = () => {
             <div>
               <p className="text-xs text-[#52525B] uppercase tracking-wider mb-1">Buying Power</p>
               <p className="text-2xl font-mono font-medium text-[#E4E4E7]">
-                ${account?.buying_power?.toLocaleString('en-US', { minimumFractionDigits: 0 }) || '0'}
+                ₹{account?.funds?.available_cash?.toLocaleString('en-IN', { minimumFractionDigits: 0 }) || '0'}
               </p>
             </div>
             <div className="w-10 h-10 rounded-sm bg-[#7000FF]/10 flex items-center justify-center">

@@ -5,9 +5,9 @@ import { TrendingUp, TrendingDown, Minus, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = `${BACKEND_URL}/api/nse`;
 
-const WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'NVDA', 'AMZN', 'META', 'NFLX'];
+const WATCHLIST = ['RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ICICIBANK', 'SBIN', 'BHARTIARTL', 'HINDUNILVR'];
 
 export const Signals = () => {
   const [signals, setSignals] = useState([]);
@@ -130,7 +130,7 @@ export const Signals = () => {
                 <div className="grid grid-cols-2 gap-3 mb-4 p-3 bg-[#0F0F12] border border-[#1F1F23] rounded-sm">
                   <div>
                     <p className="text-xs text-[#52525B] uppercase tracking-wider mb-1">Current Price</p>
-                    <p className="text-base font-mono font-medium text-[#E4E4E7]">${signal.current_price.toFixed(2)}</p>
+                    <p className="text-base font-mono font-medium text-[#E4E4E7]">₹{signal.current_price.toFixed(2)}</p>
                   </div>
                   <div>
                     <p className="text-xs text-[#52525B] uppercase tracking-wider mb-1">Rec. Shares</p>
