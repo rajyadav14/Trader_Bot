@@ -6,8 +6,9 @@ import os
 import logging
 from pathlib import Path
 
-# Import trading routes
+# Import trading routes  
 from routes.trading_routes import router as trading_router
+from routes.nse_trading_routes import router as nse_trading_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -26,6 +27,7 @@ app = FastAPI(
 
 # Include trading routes
 app.include_router(trading_router)
+app.include_router(nse_trading_router)
 
 app.add_middleware(
     CORSMiddleware,
